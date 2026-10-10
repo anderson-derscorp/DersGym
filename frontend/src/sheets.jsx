@@ -2688,7 +2688,14 @@ export const workoutDetailSheet = w => ui().openSheet(close => <WorkoutDetail w=
 /* ============================ calendar ============================ */
 function Calendar({ start, close }) {
   const st = useStore(s => s.S)
-  const [cur, setCur] = useState(() => { const d = start ? new Date(start) : new Date(); d.setDate(1); return d })
+  // `start` is a local calendar day ('YYYY-MM-DD'). new Date('YYYY-MM-DD') parses as UTC midnight, which west of
+  // UTC is the evening before: tapping a heatmap day on the 1st would open the previous month.
+  const [cur, setCur] = useState(() => {
+    const m = typeof start === 'string' && /^(\d{4})-(\d{2})-(\d{2})/.exec(start)
+    const d = m ? new Date(+m[1], +m[2] - 1, 1) : start ? new Date(start) : new Date()
+    d.setDate(1)
+    return d
+  })
   const y = cur.getFullYear(), mo = cur.getMonth()
   const byDay = {}
   st.workouts.forEach(w => {
