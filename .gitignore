@@ -27,5 +27,9 @@ result-*
 junit.xml
 coverage/
 frontend/bundle-size.json
-docs/OldDersGym/`n`n# Local planning notes
+
+# Reference copy of the old project (contains .env)
+docs/OldDersGym/
+
+# Local planning notes
 docs/superpowers/plans/
