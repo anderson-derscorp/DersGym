@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url'
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const localesDir = join(root, 'src', 'locales')
 
-export function addLocaleKeys(entries) {
+export function addLocaleKeys(entries, section = 'wellness') {
   const files = readdirSync(localesDir).filter(f => f.endsWith('.js'))
 
   for (const file of files) {
@@ -22,34 +22,37 @@ export function addLocaleKeys(entries) {
 
     if (!linesToAdd.length) continue
 
-    // Find the last closing brace before export default or EOF
     const lastBraceIdx = content.lastIndexOf('}')
     if (lastBraceIdx === -1) continue
 
     const before = content.slice(0, lastBraceIdx)
     const after = content.slice(lastBraceIdx)
-    const addition = '\n  // --- supplements ---\n' + linesToAdd.join('\n') + '\n'
+    const addition = `\n  // --- ${section} ---\n` + linesToAdd.join('\n') + '\n'
 
     writeFileSync(filePath, before + addition + after, 'utf8')
     console.log(`Updated ${file}`)
   }
 }
 
-const SUPPLEMENT_KEYS = {
-  'Supplements': { pt: 'Suplementos' },
-  'Track your daily supplements and vitamins.': { pt: 'Acompanhe seus suplementos e vitaminas diários.' },
-  'Add supplement': { pt: 'Adicionar suplemento' },
-  'Edit supplement': { pt: 'Editar suplemento' },
-  'Supplement name': { pt: 'Nome do suplemento' },
-  'Dose (optional)': { pt: 'Dose (opcional)' },
-  'Time (optional, e.g. 08:00)': { pt: 'Horário (opcional, ex: 08:00)' },
-  'No supplements added yet.': { pt: 'Nenhum suplemento adicionado ainda.' },
-  'All taken!': { pt: 'Tudo tomado!' },
-  '{0} of {1} taken': { pt: '{0} de {1} tomados' },
-  'Supplement removed': { pt: 'Suplemento removido' },
-  'Supplement saved': { pt: 'Suplemento salvo' },
-  '{0} day streak': { pt: '{0} dias seguidos' },
-  'Mark as taken': { pt: 'Marcar como tomado' },
+const DAILY_LOG_KEYS = {
+  'Daily log': { pt: 'Diário' },
+  'Log water, sleep, mood, energy and cardio.': { pt: 'Registre água, sono, humor, energia e cardio.' },
+  'Water (L)': { pt: 'Água (L)' },
+  'Sleep (hours)': { pt: 'Sono (horas)' },
+  'Mood': { pt: 'Humor' },
+  'Energy': { pt: 'Energia' },
+  'Cardio (minutes)': { pt: 'Cardio (minutos)' },
+  'Daily score: {0}%': { pt: 'Pontuação do dia: {0}%' },
+  'Daily log saved': { pt: 'Diário salvo' },
+  'Daily log removed': { pt: 'Diário removido' },
+  'Awful': { pt: 'Péssimo' },
+  'Poor': { pt: 'Ruim' },
+  'Okay': { pt: 'Normal' },
+  'Great': { pt: 'Ótimo' },
+  'Drained': { pt: 'Esgotado' },
+  'Charged': { pt: 'No máximo' },
+  'Clear log': { pt: 'Limpar diário' },
+  'Notes': { pt: 'Anotações' },
 }
 
-addLocaleKeys(SUPPLEMENT_KEYS)
+addLocaleKeys(DAILY_LOG_KEYS, 'daily-log')

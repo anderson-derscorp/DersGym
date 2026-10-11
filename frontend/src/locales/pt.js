@@ -2258,4 +2258,26 @@ export default {
   "Supplement saved": "Suplemento salvo",
   "{0} day streak": "{0} dias seguidos",
   "Mark as taken": "Marcar como tomado",
+
+  // --- daily-log ---
+  "Daily log": "Diário",
+  "Log water, sleep, mood, energy and cardio.": "Registre água, sono, humor, energia e cardio.",
+  "Water (L)": "Água (L)",
+  "Sleep (hours)": "Sono (horas)",
+  "Mood": "Humor",
+  "Energy": "Energia",
+  "Cardio (minutes)": "Cardio (minutos)",
+  "Daily score: {0}%": "Pontuação do dia: {0}%",
+  "Daily log saved": "Diário salvo",
+  "Daily log removed": "Diário removido",
+  "Awful": "Péssimo",
+  "Poor": "Ruim",
+  "Okay": "Normal",
+  "Great": "Ótimo",
+  "Drained": "Esgotado",
+  "Charged": "No máximo",
+  "Clear log": "Limpar diário",
+
+  // --- daily-log ---
+  "Notes": "Anotações",
 }

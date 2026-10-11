@@ -2269,4 +2269,26 @@ export default {
   "Supplement saved": "Supplement saved",
   "{0} day streak": "{0} day streak",
   "Mark as taken": "Mark as taken",
+
+  // --- daily-log ---
+  "Daily log": "Daily log",
+  "Log water, sleep, mood, energy and cardio.": "Log water, sleep, mood, energy and cardio.",
+  "Water (L)": "Water (L)",
+  "Sleep (hours)": "Sleep (hours)",
+  "Mood": "Mood",
+  "Energy": "Energy",
+  "Cardio (minutes)": "Cardio (minutes)",
+  "Daily score: {0}%": "Daily score: {0}%",
+  "Daily log saved": "Daily log saved",
+  "Daily log removed": "Daily log removed",
+  "Awful": "Awful",
+  "Poor": "Poor",
+  "Okay": "Okay",
+  "Great": "Great",
+  "Drained": "Drained",
+  "Charged": "Charged",
+  "Clear log": "Clear log",
+
+  // --- daily-log ---
+  "Notes": "Notes",
 }

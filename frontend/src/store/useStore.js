@@ -94,6 +94,8 @@ export const DEF = {
   // Supplements you take and the days you took them (lib/supplements.js): { [id]: { name, dose,
   // time, _ts } } and { ['<iso>|<id>']: { on, _ts } }; each entry merges on its own stamp.
   supplements: {}, suppLog: {},
+  // Daily wellness log (lib/daily-log.js): water, sleep, mood, energy, cardio and notes per day.
+  dailyLogs: {},
   // Body measurements (#82): one check-in per day, values in cm whatever the weight unit
   // (lib/measurements.js); merged across devices like weigh-ins (lib/sync-merge.js).
   measurements: [], measurementEnabled: null, customMeasurements: [],
