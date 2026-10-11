@@ -98,6 +98,8 @@ export const DEF = {
   dailyLogs: {},
   // Diet meals and daily check-off log (lib/diet.js): { [id]: { title, time, items, _ts } } and { ['<iso>|<itemId>']: { on, _ts } }.
   dietMeals: {}, dietLog: {},
+  // Biweekly check-in & feedback (lib/feedbacks.js): subjective ratings, measurements and reflection notes.
+  feedbacks: {},
   // Body measurements (#82): one check-in per day, values in cm whatever the weight unit
   // (lib/measurements.js); merged across devices like weigh-ins (lib/sync-merge.js).
   measurements: [], measurementEnabled: null, customMeasurements: [],

@@ -4,7 +4,7 @@ import { useStore } from '../store/useStore.js'
 import { effectiveRoutines, effectiveRoutineIds, nextTrainingDay, streakWeeks, lastBW, setsDoneActive } from '../lib/history.js'
 import { fmtNum, fmtDate, todayISO, isoOf, weekStartOf, weekDayOffset, DAYS, DAYN } from '../lib/format.js'
 import { t, tn, dateLocale } from '../lib/i18n.js'
-import { bwSheet, goalSheet, dayOverrideSheet, calendarSheet, startFlow, starterPlanSheet, bwDeltaColor, weighInsSheet, supplementsSheet, dailyLogSheet, dietSheet } from '../sheets.jsx'
+import { bwSheet, goalSheet, dayOverrideSheet, calendarSheet, startFlow, starterPlanSheet, bwDeltaColor, weighInsSheet, supplementsSheet, dailyLogSheet, dietSheet, feedbackSheet } from '../sheets.jsx'
 import LineChart from '../components/LineChart.jsx'
 import Icon from '../components/Icon.jsx'
 import QueueRow from '../components/QueueRow.jsx'
@@ -18,6 +18,7 @@ import { dayNoteOf } from '../lib/day-notes.js'
 import { suppDay } from '../lib/supplements.js'
 import { dailyLogOf, dailyLogScore } from '../lib/daily-log.js'
 import { dietDay } from '../lib/diet.js'
+import { latestFeedback, isDueForFeedback, daysBetween } from '../lib/feedbacks.js'
 
 // Home = what to do now + a quick glance. Deep charts & history live in Stats.
 export default function Home() {
@@ -100,6 +101,9 @@ export default function Home() {
   const todayLog = dailyLogOf(S, todayISO())
   const todayScore = dailyLogScore(todayLog, !!doneToday)
   const { totalItems: dietTotal, checkedItems: dietChecked, pct: dietPct, consumed: dietConsumed } = dietDay(S, todayISO())
+  const fbLatest = latestFeedback(S)
+  const fbDue = isDueForFeedback(S, todayISO())
+  const fbDays = fbLatest ? daysBetween(fbLatest.d, todayISO()) : null
 
   // today's session shown right under the week strip
   const onToday = () => { if (S.active) nav('/workout'); else if (todayRoutines.length) startFlow(effectiveRoutineIds(S, todayISO())); else dayOverrideSheet(todayISO()) }
@@ -316,6 +320,35 @@ export default function Home() {
               }}
             >
               {dietPct}%
+            </span>
+          )}
+          <Icon name="chevronRight" className="chev" />
+        </div>
+      </div>
+    </div>
+
+    {/* Biweekly Check-in / Feedback card */}
+    <div className="card tappable" style={{ cursor: 'pointer' }} {...tappable(() => feedbackSheet())}>
+      <div className="row between">
+        <div className="row" style={{ gap: 9 }}>
+          <span className="lrow-i" style={{ background: fbDue ? 'var(--accent)' : 'var(--purple, #a855f7)' }}>
+            <Icon name="sparkles" />
+          </span>
+          <div>
+            <div className="lbl2">{t('Biweekly check-in')}</div>
+            <div className="ttl">
+              {fbDue
+                ? t('15 days reached! Review your progress and measurements.')
+                : fbDays != null
+                ? t('Last check-in {0} days ago ({1}).', fbDays, fmtDate(fbLatest.d))
+                : t('Track measurements, ratings and fortnightly wins.')}
+            </div>
+          </div>
+        </div>
+        <div className="row" style={{ gap: 6, alignItems: 'center' }}>
+          {fbDue && (
+            <span className="tag acc">
+              {t('Due')}
             </span>
           )}
           <Icon name="chevronRight" className="chev" />

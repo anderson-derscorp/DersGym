@@ -83,14 +83,15 @@ import { readDayNote as readNote } from './day-notes.js'
 import { readSupp } from './supplements.js'
 import { readDailyLog } from './daily-log.js'
 import { readDietMeal } from './diet.js'
+import { readFeedback } from './feedbacks.js'
 
 const clone = o => JSON.parse(JSON.stringify(o))
 const list = v => (Array.isArray(v) ? v : [])
 // The maps whose every entry carries its own edit time (mergeStampedMap). dayNotes is a day's
 // note on a day off (lib/day-notes.js), one entry per date. supplements and suppLog are the
 // supplement list and its daily ticks (lib/supplements.js). dailyLogs is the daily wellness log.
-// dietMeals and dietLog are meals and daily meal checks (lib/diet.js).
-export const STAMPED_MAPS = ['balanceOverrides', 'loadKind', 'plates', 'dbLoad', 'dumbbells', 'dayNotes', 'supplements', 'suppLog', 'dailyLogs', 'dietMeals', 'dietLog']
+// dietMeals and dietLog are meals and daily meal checks (lib/diet.js). feedbacks are biweekly reviews (lib/feedbacks.js).
+export const STAMPED_MAPS = ['balanceOverrides', 'loadKind', 'plates', 'dbLoad', 'dumbbells', 'dayNotes', 'supplements', 'suppLog', 'dailyLogs', 'dietMeals', 'dietLog', 'feedbacks']
 
 /** The copy with the later `_ts`; on a tie the first argument (callers pass local first). */
 export const newerOf = (a, b) => ((b?._ts || 0) > (a?._ts || 0) ? b : a)
@@ -619,7 +620,7 @@ function applyDeletions(S, deleted) {
 const OWN_MERGE = new Set([
   '_ts', '_rev', '_wid', '_wids', '_unstamped', '_prior', 'active', 'unit', 'unitSet', 'resetAt', 'resetIds', 'deleted', 'edited', 'undone', 'routineOrder',
   'workouts', 'routines', 'customEx', 'equipProfiles', 'gymCards', 'bodyweight', 'measurements', 'favEx',
-  'exWeights', 'balanceOverrides', 'loadKind', 'plates', 'dbLoad', 'dumbbells', 'dayNotes', 'supplements', 'suppLog', 'dailyLogs', 'dietMeals', 'dietLog',
+  'exWeights', 'balanceOverrides', 'loadKind', 'plates', 'dbLoad', 'dumbbells', 'dayNotes', 'supplements', 'suppLog', 'dailyLogs', 'dietMeals', 'dietLog', 'feedbacks',
 ])
 // Stamped per key instead of whole: one day of the plan, one exercise's note or bar.
 const PER_KEY = new Set(['week', 'dayPlan', 'exNotes', 'barWeights'])
@@ -1137,6 +1138,7 @@ export function localExtras(local, server) {
     Object.entries(isMap(local?.supplements) ? local.supplements : {}).filter(([k, v]) => readSupp(v) && !readSupp(server?.supplements?.[k])).length +
     Object.entries(isMap(local?.dailyLogs) ? local.dailyLogs : {}).filter(([k, v]) => readDailyLog(v) && !readDailyLog(server?.dailyLogs?.[k])).length +
     Object.entries(isMap(local?.dietMeals) ? local.dietMeals : {}).filter(([k, v]) => readDietMeal(v) && !readDietMeal(server?.dietMeals?.[k])).length +
+    Object.entries(isMap(local?.feedbacks) ? local.feedbacks : {}).filter(([k, v]) => readFeedback(v) && !readFeedback(server?.feedbacks?.[k])).length +
     keysNew('week') + keysNew('dayPlan') + keysNew('exNotes')
   return {
     workouts: list(local?.workouts).filter(w => !have.has(workoutKey(w))).length,
