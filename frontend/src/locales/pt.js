@@ -2242,4 +2242,20 @@ export default {
   'Your sports watch, calling you back.': 'O teu relógio desportivo a chamar-te de volta.',
   'Coach wants you back on the bar.': 'O coach quer-te de volta à barra.',
   'Gentle, for headphones or a quiet room.': 'Suave, para auscultadores ou uma sala sossegada.',
+
+  // --- supplements ---
+  "Supplements": "Suplementos",
+  "Track your daily supplements and vitamins.": "Acompanhe seus suplementos e vitaminas diários.",
+  "Add supplement": "Adicionar suplemento",
+  "Edit supplement": "Editar suplemento",
+  "Supplement name": "Nome do suplemento",
+  "Dose (optional)": "Dose (opcional)",
+  "Time (optional, e.g. 08:00)": "Horário (opcional, ex: 08:00)",
+  "No supplements added yet.": "Nenhum suplemento adicionado ainda.",
+  "All taken!": "Tudo tomado!",
+  "{0} of {1} taken": "{0} de {1} tomados",
+  "Supplement removed": "Suplemento removido",
+  "Supplement saved": "Suplemento salvo",
+  "{0} day streak": "{0} dias seguidos",
+  "Mark as taken": "Marcar como tomado",
 }

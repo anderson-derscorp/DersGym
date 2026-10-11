@@ -2242,4 +2242,20 @@ export default {
   'Your sports watch, calling you back.': 'Il tuo orologio sportivo ti richiama.',
   'Coach wants you back on the bar.': 'Il coach ti vuole di nuovo al bilanciere.',
   'Gentle, for headphones or a quiet room.': 'Delicato, per le cuffie o una stanza silenziosa.',
+
+  // --- supplements ---
+  "Supplements": "Supplements",
+  "Track your daily supplements and vitamins.": "Track your daily supplements and vitamins.",
+  "Add supplement": "Add supplement",
+  "Edit supplement": "Edit supplement",
+  "Supplement name": "Supplement name",
+  "Dose (optional)": "Dose (optional)",
+  "Time (optional, e.g. 08:00)": "Time (optional, e.g. 08:00)",
+  "No supplements added yet.": "No supplements added yet.",
+  "All taken!": "All taken!",
+  "{0} of {1} taken": "{0} of {1} taken",
+  "Supplement removed": "Supplement removed",
+  "Supplement saved": "Supplement saved",
+  "{0} day streak": "{0} day streak",
+  "Mark as taken": "Mark as taken",
 }

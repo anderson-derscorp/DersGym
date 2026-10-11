@@ -4,7 +4,7 @@ import { useStore } from '../store/useStore.js'
 import { effectiveRoutines, effectiveRoutineIds, nextTrainingDay, streakWeeks, lastBW, setsDoneActive } from '../lib/history.js'
 import { fmtNum, fmtDate, todayISO, isoOf, weekStartOf, weekDayOffset, DAYS, DAYN } from '../lib/format.js'
 import { t, tn, dateLocale } from '../lib/i18n.js'
-import { bwSheet, goalSheet, dayOverrideSheet, calendarSheet, startFlow, starterPlanSheet, bwDeltaColor, weighInsSheet } from '../sheets.jsx'
+import { bwSheet, goalSheet, dayOverrideSheet, calendarSheet, startFlow, starterPlanSheet, bwDeltaColor, weighInsSheet, supplementsSheet } from '../sheets.jsx'
 import LineChart from '../components/LineChart.jsx'
 import Icon from '../components/Icon.jsx'
 import QueueRow from '../components/QueueRow.jsx'
@@ -15,6 +15,7 @@ import { Button } from '../components/ui.jsx'
 import { tappable } from '../lib/use-sheet-keyboard.js'
 import { glyphOf } from '../lib/glyphs.js'
 import { dayNoteOf } from '../lib/day-notes.js'
+import { suppDay } from '../lib/supplements.js'
 
 // Home = what to do now + a quick glance. Deep charts & history live in Stats.
 export default function Home() {
@@ -93,6 +94,7 @@ export default function Home() {
   // in a coach week, the queue's sessions and your own days together (lib/queue.js weekTally).
   const { done: doneThisWeek, planned: plannedPerWeek } = weekTally(S, todayISO())
   const bwPoints = S.bodyweight.slice(-30).map(b => ({ t: b.t || new Date(b.d).getTime(), y: b.w, d: b.d }))
+  const { taken: suppTaken, total: suppTotal, pct: suppPct } = suppDay(S, todayISO())
 
   // today's session shown right under the week strip
   const onToday = () => { if (S.active) nav('/workout'); else if (todayRoutines.length) startFlow(effectiveRoutineIds(S, todayISO())); else dayOverrideSheet(todayISO()) }
@@ -222,6 +224,35 @@ export default function Home() {
         ? t('No weigh-ins yet. Log your weight to start the curve.')
         : t("No weigh-ins yet. Log your weight to start the curve (we also ask before every workout).")}</div>}
     </div>}
+
+    {/* Supplements check-off card */}
+    <div className="card tappable" style={{ cursor: 'pointer' }} {...tappable(() => supplementsSheet())}>
+      <div className="row between">
+        <div className="row" style={{ gap: 9 }}>
+          <span className="lrow-i" style={{ background: 'var(--teal)' }}>
+            <Icon name="heart" />
+          </span>
+          <div>
+            <div className="lbl2">{t('Supplements')}</div>
+            <div className="ttl">
+              {suppTotal === 0
+                ? t('Track your daily supplements and vitamins.')
+                : suppPct === 100
+                ? t('All taken!')
+                : t('{0} of {1} taken', suppTaken, suppTotal)}
+            </div>
+          </div>
+        </div>
+        <div className="row" style={{ gap: 6, alignItems: 'center' }}>
+          {suppTotal > 0 && suppPct === 100 && (
+            <span className="tag" style={{ color: 'var(--green)', background: 'color-mix(in srgb,var(--green) 16%,transparent)' }}>
+              {t('Done')}
+            </span>
+          )}
+          <Icon name="chevronRight" className="chev" />
+        </div>
+      </div>
+    </div>
 
     <div className="card tappable" style={{ cursor: 'pointer' }} {...tappable(() => calendarSheet())}>
       <div className="row between">

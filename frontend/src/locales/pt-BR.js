@@ -1405,4 +1405,22 @@ export const PT_BR_OVERRIDES = {
   'Releases are checked on GitHub. The download is verified against its checksum before the installer opens.': 'As versões são verificadas no GitHub. O download é conferido pela soma de verificação antes de abrir o instalador.',
 }
 
-export default { ...pt, ...PT_BR_OVERRIDES }
+export default {
+  ...pt,
+  ...PT_BR_OVERRIDES,
+  // --- supplements ---
+  "Supplements": "Suplementos",
+  "Track your daily supplements and vitamins.": "Acompanhe seus suplementos e vitaminas diários.",
+  "Add supplement": "Adicionar suplemento",
+  "Edit supplement": "Editar suplemento",
+  "Supplement name": "Nome do suplemento",
+  "Dose (optional)": "Dose (opcional)",
+  "Time (optional, e.g. 08:00)": "Horário (opcional, ex: 08:00)",
+  "No supplements added yet.": "Nenhum suplemento adicionado ainda.",
+  "All taken!": "Tudo tomado!",
+  "{0} of {1} taken": "{0} de {1} tomados",
+  "Supplement removed": "Suplemento removido",
+  "Supplement saved": "Suplemento salvo",
+  "{0} day streak": "{0} dias seguidos",
+  "Mark as taken": "Marcar como tomado",
+}

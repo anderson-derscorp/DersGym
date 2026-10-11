@@ -2242,4 +2242,20 @@ export default {
   'Your sports watch, calling you back.': '스포츠 시계가 다시 부르고 있어요.',
   'Coach wants you back on the bar.': '코치가 바 앞으로 돌아오래요.',
   'Gentle, for headphones or a quiet room.': '이어폰이나 조용한 곳에 어울려요.',
+
+  // --- supplements ---
+  "Supplements": "Supplements",
+  "Track your daily supplements and vitamins.": "Track your daily supplements and vitamins.",
+  "Add supplement": "Add supplement",
+  "Edit supplement": "Edit supplement",
+  "Supplement name": "Supplement name",
+  "Dose (optional)": "Dose (optional)",
+  "Time (optional, e.g. 08:00)": "Time (optional, e.g. 08:00)",
+  "No supplements added yet.": "No supplements added yet.",
+  "All taken!": "All taken!",
+  "{0} of {1} taken": "{0} of {1} taken",
+  "Supplement removed": "Supplement removed",
+  "Supplement saved": "Supplement saved",
+  "{0} day streak": "{0} day streak",
+  "Mark as taken": "Mark as taken",
 }
