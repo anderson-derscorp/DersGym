@@ -8,6 +8,7 @@ import {
   ENERGY_LABELS,
   readDailyLog,
   withDailyLog,
+  DAILY_LOG_NOTE_MAX,
 } from './daily-log.js'
 import { highestStamp, localExtras, mergeStates, resetIdsOf, stampChange, STAMPED_MAPS } from './sync-merge.js'
 
@@ -32,11 +33,11 @@ describe('daily log: reading and writing', () => {
   })
 
   it('clamps and sanitizes fields appropriately', () => {
-    const res = readDailyLog({ water: 25, sleep: 26, cardioMin: 700, notes: 'x'.repeat(300) })
+    const res = readDailyLog({ water: 25, sleep: 24, cardioMin: 700, notes: 'x'.repeat(600) })
     expect(res.water).toBe(20)
     expect(res.sleep).toBe(24)
     expect(res.cardioMin).toBe(600)
-    expect(res.notes.length).toBe(280)
+    expect(res.notes.length).toBe(DAILY_LOG_NOTE_MAX)
   })
 
   it('writes a stamped entry, and an empty entry as a stamped clear', () => {

@@ -96,6 +96,8 @@ export const DEF = {
   supplements: {}, suppLog: {},
   // Daily wellness log (lib/daily-log.js): water, sleep, mood, energy, cardio and notes per day.
   dailyLogs: {},
+  // Diet meals and daily check-off log (lib/diet.js): { [id]: { title, time, items, _ts } } and { ['<iso>|<itemId>']: { on, _ts } }.
+  dietMeals: {}, dietLog: {},
   // Body measurements (#82): one check-in per day, values in cm whatever the weight unit
   // (lib/measurements.js); merged across devices like weigh-ins (lib/sync-merge.js).
   measurements: [], measurementEnabled: null, customMeasurements: [],

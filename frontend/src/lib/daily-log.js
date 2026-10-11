@@ -7,8 +7,7 @@
 // both, and the later edit of the same day wins (mergeStampedMap). Taking an entry away is a stamped
 // empty entry (`{ _ts }`), not a deleted key (same rule as lib/day-notes.js and lib/supplements.js).
 
-import { NOTE_MAX } from './history.js'
-
+export const DAILY_LOG_NOTE_MAX = 500
 export const MOOD_LEVELS = [1, 2, 3, 4, 5]
 export const MOOD_LABELS = { 1: 'Awful', 2: 'Poor', 3: 'Okay', 4: 'Good', 5: 'Great' }
 export const ENERGY_LABELS = { 1: 'Drained', 2: 'Low', 3: 'Normal', 4: 'High', 5: 'Charged' }
@@ -26,11 +25,11 @@ export function readDailyLog(entry) {
   if (!isMap(entry)) return null
 
   const water = typeof entry.water === 'number' && entry.water > 0 ? Math.min(20, Math.round(entry.water * 10) / 10) : null
-  const sleep = typeof entry.sleep === 'number' && entry.sleep > 0 ? Math.min(24, Math.round(entry.sleep * 10) / 10) : null
+  const sleep = typeof entry.sleep === 'number' && entry.sleep > 0 && entry.sleep <= 24 ? Math.round(entry.sleep * 10) / 10 : null
   const mood = Number.isInteger(entry.mood) && entry.mood >= 1 && entry.mood <= 5 ? entry.mood : null
   const energy = Number.isInteger(entry.energy) && entry.energy >= 1 && entry.energy <= 5 ? entry.energy : null
   const cardioMin = Number.isInteger(entry.cardioMin) && entry.cardioMin > 0 ? Math.min(600, entry.cardioMin) : null
-  const notes = typeof entry.notes === 'string' ? entry.notes.trim().slice(0, NOTE_MAX) : ''
+  const notes = typeof entry.notes === 'string' ? entry.notes.trim().slice(0, DAILY_LOG_NOTE_MAX) : ''
 
   if (water == null && sleep == null && mood == null && energy == null && cardioMin == null && !notes) {
     return null

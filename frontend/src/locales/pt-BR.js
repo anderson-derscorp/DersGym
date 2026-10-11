@@ -1445,4 +1445,43 @@ export default {
 
   // --- daily-log ---
   "Notes": "Anotações",
+
+  // --- diet ---
+  "Diet": "Dieta",
+  "Track meals, protein and macros.": "Acompanhe refeições, proteínas e macros.",
+  "All meals logged!": "Todas as refeições registradas!",
+  "{0} of {1} items ({2} kcal)": "{0} de {1} itens ({2} kcal)",
+  "Meal added": "Refeição adicionada",
+  "Meal removed": "Refeição removida",
+  "Remove this meal?": "Remover esta refeição?",
+  "Item added": "Item adicionado",
+  "Load starter plan and add suggested meals?": "Carregar plano inicial e adicionar refeições sugeridas?",
+  "Starter diet loaded": "Plano inicial carregado",
+  "Protein": "Proteína",
+  "Carbs": "Carboidratos",
+  "Fat": "Gorduras",
+  "No diet plan configured yet.": "Nenhum plano alimentar configurado ainda.",
+  "Load starter plan": "Carregar modelo inicial",
+  "Create meals manually": "Criar refeições manualmente",
+  "Optional": "Opcional",
+  "Check all": "Marcar todas",
+  "Uncheck all": "Desmarcar todas",
+  "No items in this meal": "Nenhum item nesta refeição",
+  "Item name": "Nome do item",
+  "Portion (e.g. 150g)": "Porção (ex: 150g)",
+  "kcal": "kcal",
+  "P (g)": "P (g)",
+  "C (g)": "C (g)",
+  "F (g)": "G (g)",
+  "Save item": "Salvar item",
+  "Add item": "Adicionar item",
+  "Meal title (e.g. 10:30 - Morning)": "Título da refeição (ex: 10h30 - Manhã)",
+  "Time (e.g. 10:30)": "Horário (ex: 10:30)",
+  "Notes/instructions (optional)": "Instruções/observações (opcional)",
+  "Optional meal": "Refeição opcional",
+  "Save meal": "Salvar refeição",
+  "Add meal": "Adicionar refeição",
+
+  // --- diet ---
+  "Item removed": "Item removido",
 }

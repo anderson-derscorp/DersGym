@@ -2273,4 +2273,43 @@ export default {
 
   // --- daily-log ---
   "Notes": "Notes",
+
+  // --- diet ---
+  "Diet": "Diet",
+  "Track meals, protein and macros.": "Track meals, protein and macros.",
+  "All meals logged!": "All meals logged!",
+  "{0} of {1} items ({2} kcal)": "{0} of {1} items ({2} kcal)",
+  "Meal added": "Meal added",
+  "Meal removed": "Meal removed",
+  "Remove this meal?": "Remove this meal?",
+  "Item added": "Item added",
+  "Load starter plan and add suggested meals?": "Load starter plan and add suggested meals?",
+  "Starter diet loaded": "Starter diet loaded",
+  "Protein": "Protein",
+  "Carbs": "Carbs",
+  "Fat": "Fat",
+  "No diet plan configured yet.": "No diet plan configured yet.",
+  "Load starter plan": "Load starter plan",
+  "Create meals manually": "Create meals manually",
+  "Optional": "Optional",
+  "Check all": "Check all",
+  "Uncheck all": "Uncheck all",
+  "No items in this meal": "No items in this meal",
+  "Item name": "Item name",
+  "Portion (e.g. 150g)": "Portion (e.g. 150g)",
+  "kcal": "kcal",
+  "P (g)": "P (g)",
+  "C (g)": "C (g)",
+  "F (g)": "F (g)",
+  "Save item": "Save item",
+  "Add item": "Add item",
+  "Meal title (e.g. 10:30 - Morning)": "Meal title (e.g. 10:30 - Morning)",
+  "Time (e.g. 10:30)": "Time (e.g. 10:30)",
+  "Notes/instructions (optional)": "Notes/instructions (optional)",
+  "Optional meal": "Optional meal",
+  "Save meal": "Save meal",
+  "Add meal": "Add meal",
+
+  // --- diet ---
+  "Item removed": "Item removed",
 }

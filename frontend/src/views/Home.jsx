@@ -4,7 +4,7 @@ import { useStore } from '../store/useStore.js'
 import { effectiveRoutines, effectiveRoutineIds, nextTrainingDay, streakWeeks, lastBW, setsDoneActive } from '../lib/history.js'
 import { fmtNum, fmtDate, todayISO, isoOf, weekStartOf, weekDayOffset, DAYS, DAYN } from '../lib/format.js'
 import { t, tn, dateLocale } from '../lib/i18n.js'
-import { bwSheet, goalSheet, dayOverrideSheet, calendarSheet, startFlow, starterPlanSheet, bwDeltaColor, weighInsSheet, supplementsSheet, dailyLogSheet } from '../sheets.jsx'
+import { bwSheet, goalSheet, dayOverrideSheet, calendarSheet, startFlow, starterPlanSheet, bwDeltaColor, weighInsSheet, supplementsSheet, dailyLogSheet, dietSheet } from '../sheets.jsx'
 import LineChart from '../components/LineChart.jsx'
 import Icon from '../components/Icon.jsx'
 import QueueRow from '../components/QueueRow.jsx'
@@ -17,6 +17,7 @@ import { glyphOf } from '../lib/glyphs.js'
 import { dayNoteOf } from '../lib/day-notes.js'
 import { suppDay } from '../lib/supplements.js'
 import { dailyLogOf, dailyLogScore } from '../lib/daily-log.js'
+import { dietDay } from '../lib/diet.js'
 
 // Home = what to do now + a quick glance. Deep charts & history live in Stats.
 export default function Home() {
@@ -98,6 +99,7 @@ export default function Home() {
   const { taken: suppTaken, total: suppTotal, pct: suppPct } = suppDay(S, todayISO())
   const todayLog = dailyLogOf(S, todayISO())
   const todayScore = dailyLogScore(todayLog, !!doneToday)
+  const { totalItems: dietTotal, checkedItems: dietChecked, pct: dietPct, consumed: dietConsumed } = dietDay(S, todayISO())
 
   // today's session shown right under the week strip
   const onToday = () => { if (S.active) nav('/workout'); else if (todayRoutines.length) startFlow(effectiveRoutineIds(S, todayISO())); else dayOverrideSheet(todayISO()) }
@@ -279,6 +281,41 @@ export default function Home() {
           {todayScore != null && (
             <span className="tag acc">
               {todayScore}%
+            </span>
+          )}
+          <Icon name="chevronRight" className="chev" />
+        </div>
+      </div>
+    </div>
+
+    {/* Diet card */}
+    <div className="card tappable" style={{ cursor: 'pointer' }} {...tappable(() => dietSheet())}>
+      <div className="row between">
+        <div className="row" style={{ gap: 9 }}>
+          <span className="lrow-i" style={{ background: 'var(--orange)' }}>
+            <Icon name="flame" />
+          </span>
+          <div>
+            <div className="lbl2">{t('Diet')}</div>
+            <div className="ttl">
+              {dietTotal === 0
+                ? t('Track meals, protein and macros.')
+                : dietPct === 100
+                ? t('All meals logged!')
+                : t('{0} of {1} items ({2} kcal)', dietChecked, dietTotal, dietConsumed.cals)}
+            </div>
+          </div>
+        </div>
+        <div className="row" style={{ gap: 6, alignItems: 'center' }}>
+          {dietTotal > 0 && dietPct != null && (
+            <span
+              className="tag"
+              style={{
+                color: dietPct === 100 ? 'var(--green)' : 'inherit',
+                background: dietPct === 100 ? 'color-mix(in srgb,var(--green) 16%,transparent)' : 'rgba(255,255,255,0.08)',
+              }}
+            >
+              {dietPct}%
             </span>
           )}
           <Icon name="chevronRight" className="chev" />

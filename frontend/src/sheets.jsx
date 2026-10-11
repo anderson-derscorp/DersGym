@@ -22,6 +22,7 @@ import Stepper from './components/Stepper.jsx'
 import { durationSheet } from './components/DurationWheel.jsx'
 import SupplementsSheet from './components/SupplementsSheet.jsx'
 import DailyLogSheet from './components/DailyLogSheet.jsx'
+import DietSheet from './components/DietSheet.jsx'
 import { SG_NAME_MAX } from './lib/superset-meta.js'
 import { REST_MAX, fmtRest } from './lib/duration.js'
 import Icon from './components/Icon.jsx'
@@ -2326,6 +2327,7 @@ function DayNote({ iso, close }) {
 export const dayNoteSheet = iso => ui().openSheet(close => <DayNote iso={iso} close={close} />)
 export const supplementsSheet = iso => ui().openSheet(close => <SupplementsSheet iso={iso} close={close} />)
 export const dailyLogSheet = iso => ui().openSheet(close => <DailyLogSheet iso={iso} close={close} />)
+export const dietSheet = iso => ui().openSheet(close => <DietSheet iso={iso} close={close} />)
 
 // Plan → Schedule → a weekday. One sheet for the whole day: tap routines to put them on it or
 // take them off (two or more make a combined day, docs/dev/COMBINE_ROUTINES.md), in the order
